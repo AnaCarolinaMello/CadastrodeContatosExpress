@@ -13,9 +13,7 @@ app.use(express.static('public'))
 
 exports.resHTML = async (req,res,next) =>{
     try{
-        res.render('index',{
-            cao: "aa"
-        });
+        res.render('index');
     }catch(err){
         next(err)
     }
@@ -29,16 +27,16 @@ exports.getContato = async(req,res,next) =>{
         const index = contatos.contatos.findIndex(c => c.nome == nome)
         if(index == -1){
             console.log("Contato inexistente")
-            res.render('index')
+            let message = 'Contato inexistente'
+            res.render('erroBusca',{message: message});
             res.end();
         }else if(nome == null){
             console.log("Insira o nome a ser pesquisado")
-            res.render('index')
+            let message = 'Insira o nome a ser pesquisado'
+            res.render('erroBusca',{message: message});
             res.end();
         }else{
-            //const contatos2 = await fs.readFileSync("models/contatos.json")
             let contato = contatos.contatos.filter(c => c.nome == nome)
-            //console.log(typeof(contato))
             res.render('contatos',{contato:contato})
             res.end();
         }
