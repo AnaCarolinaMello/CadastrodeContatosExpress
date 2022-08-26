@@ -49,7 +49,6 @@ app.post('/', async (req,res,next) =>{
 
             await fs.writeFileSync("models/contatos.json",JSON.stringify(contatos,null,2));
             console.log("Contato adicionado com sucesso")
-            res.render('index')
             res.end();
         }
     }catch(err){
