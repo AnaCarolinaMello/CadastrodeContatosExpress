@@ -24,7 +24,8 @@ exports.getContato = async(req,res,next) =>{
     try{
         let nome = req.query.contato
         const contatos = JSON.parse(await fs.readFileSync("models/contatos.json"))
-        const index = contatos.contatos.findIndex((c) => c.nome.toLowerCase().includes(nome.toLowerCase()))
+        const le = RegExp(`.*${nome.toLowerCase().split('').join('.*')}.*`)
+        const index = contatos.contatos.findIndex((c) => c.nome.toLowerCase().match(le))
         if(index == -1){
             console.log("Contato inexistente")
             let message = 'Contato inexistente'
@@ -36,7 +37,7 @@ exports.getContato = async(req,res,next) =>{
             res.render('erroBusca',{message: message});
             res.end();
         }else{
-            let contato = contatos.contatos.filter((c) => c.nome.toLowerCase().includes(nome.toLowerCase()));
+            let contato = contatos.contatos.filter((c) => c.nome.toLowerCase().match(le));
             res.render('contatos',{contato:contato, nome:nome})
             res.end();
         }
