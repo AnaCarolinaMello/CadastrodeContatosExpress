@@ -9,15 +9,15 @@
 </head>
 <body>
     <header>
-        <form action="/Contato" method="get">
-            <input type="text" placeholder="Pequisar contato..." name="contato"><button type="submit">Buscar</button>
+        <br><form action="/Contato" method="get">
+            <input type="text" placeholder="Pequisar contato..." name="contato" required><button type="submit">Buscar</button>
         </form>
     </header><br>
     <form action = "/" method="post">
         <label>Nome:</label>
-        <input type="text" name="nome">
+        <input type="text" name="nome"  required>
         <label>E-mail</label>
-        <input type="text" name="email">
+        <input type="text" name="email"  required>
         <button type="submit">+</button>
     </form>
 </body>
