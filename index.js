@@ -35,7 +35,7 @@ app.post('/', async (req,res,next) =>{
         if(nome == null || email == null){
             console.log("Campos obrigatórios faltando")
             let mensagem = 'Campos obrigatórios faltando'
-            res.render('index',{mensagem: mensagem,messagem:null});
+            res.render('index',{mensagem: mensagem,message:null});
             res.end();
         }else{
 
