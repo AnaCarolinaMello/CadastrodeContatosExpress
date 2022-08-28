@@ -13,7 +13,7 @@ app.use(express.static('public'))
 
 exports.resHTML = async (req,res,next) =>{
     try{
-        res.render('index');
+        res.render('index',{message: null,mensagem:null});
     }catch(err){
         next(err)
     }
@@ -29,12 +29,12 @@ exports.getContato = async(req,res,next) =>{
         if(index == -1){
             console.log("Contato inexistente")
             let message = 'Contato inexistente'
-            res.render('erroBusca',{message: message});
+            res.render('index',{message: message,contato:null, nome:null,mensagem:null});
             res.end();
         }else if(nome == null){
             console.log("Insira o nome a ser pesquisado")
             let message = 'Insira o nome a ser pesquisado'
-            res.render('erroBusca',{message: message});
+            res.render('index',{contato:null, nome:null,message: message,mensagem: null});
             res.end();
         }else{
             let contato = contatos.contatos.filter((c) => c.nome.toLowerCase().match(le));
