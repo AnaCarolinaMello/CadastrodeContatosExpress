@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/style.css" type="text/css">
+    <title>Contatos</title>
+</head>
+<body>
+    <header>
+        <div id="exibirContato" name="exibirContato">
+            <h2>Você buscou por "<%=nome%>"</h2>
+            <%contato.forEach(value =>{%>
+                <h3>Nome: </h3>
+                <label><%= value.nome%></label>
+                <h3>Email: </h3>
+                <label><%= value.email%></label>
+            <%})%>
+        </div><br>
+        <button><a href="/">Voltar</a></button>
+    </header>
+</body>
+</html>
