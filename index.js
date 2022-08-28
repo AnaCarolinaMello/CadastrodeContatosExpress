@@ -35,7 +35,7 @@ app.post('/', async (req,res,next) =>{
         if(nome == null || email == null){
             console.log("Campos obrigatórios faltando")
             let mensagem = 'Campos obrigatórios faltando'
-            res.render('erroCriar',{mensagem: mensagem});
+            res.render('index',{mensagem: mensagem,messagem:null});
             res.end();
         }else{
 
@@ -46,10 +46,10 @@ app.post('/', async (req,res,next) =>{
             };
 
             contatos.contatos.push(contato);
-
             await fs.writeFileSync("models/contatos.json",JSON.stringify(contatos,null,2));
             console.log("Contato adicionado com sucesso")
-            res.end();
+            res.render('index')
+            res.end()
         }
     }catch(err){
         next(err)
