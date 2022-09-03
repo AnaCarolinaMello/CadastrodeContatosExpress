@@ -11,19 +11,17 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const cors = require('cors')
 const fs = require('fs')
-const expressLayouts = require('express-ejs-layouts')
 
 app.use(express.json());
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/',route);
-app.use(expressLayouts)   
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')) 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'views')));
-app.use(express.static('public'))
+app.use(express.static('../public'))
 
 app.post('/', async (req,res,next) =>{
     try{
@@ -48,7 +46,7 @@ app.post('/', async (req,res,next) =>{
             contatos.contatos.push(contato);
             await fs.writeFileSync("models/contatos.json",JSON.stringify(contatos,null,2));
             console.log("Contato adicionado com sucesso")
-            res.render('index')
+            res.render('index',{mensagem: "Contato adicionado com sucesso",message:null})
             res.end()
         }
     }catch(err){
